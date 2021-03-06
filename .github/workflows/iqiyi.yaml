@@ -1,12 +1,11 @@
 name: 爱奇艺会员签到
 
 on:
-  
-  push: # push触发
-    branches: [ main ]
-  workflow_dispatch: # 手动触发
-  schedule: # 计划任务触发
-    - cron: '20 18-24/2 * * *' # cron表达式，Actions时区是UTC时间，所以要往前推8个小时(4-23)
+    workflow_dispatch:
+    schedule:
+        - cron: "*/20 16 * * *"
+    watch:
+        types: [started]
 
 jobs:
     build:
@@ -29,8 +28,6 @@ jobs:
                   SEND_KEY: ${{ secrets.SEND_KEY }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
                   BARK_PUSH: ${{ secrets.BARK_PUSH }}
-                  QQ_SKEY: ${{ secrets.QQ_SKEY}}
-                  QQ_MODE: ${{ secrets.QQ_MODE}}
                   PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN}}
                   PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER}}
                   QYWX_KEY: ${{ secrets.QYWX_KEY}}
