@@ -1,16 +1,12 @@
-name: 爱奇艺会员签到测试项目
-
+name: 自动同步-Actions
 on:
-   push: # push触发
-    branches: [ main ]
-    workflow_dispatch:
-    schedule:
-        - cron: "15 16-18 * * *"
-    watch:
-        types: started
-
+  schedule:
+    - cron: '31 16,17,18 * * *'
+  workflow_dispatch:
+  watch:
+    types: started
 jobs:
-    build:
+  repo-sync:
         runs-on: ubuntu-latest
         if: github.event.repository.owner.id == github.event.sender.id
         steps:
